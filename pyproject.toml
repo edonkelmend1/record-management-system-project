@@ -1,0 +1,9 @@
+[project]
+name = "record-management-system"
+version = "0.1.0"
+description = "Tkinter record management system for a specialist travel agent"
+requires-python = ">=3.10"
+
+[tool.unittest]
+testpaths = ["tests"]
+
