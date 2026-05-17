@@ -17,10 +17,9 @@ spreadsheets and paper notes that a small travel agency would
 otherwise rely on.  Booking staff need to find a customer's contact
 details quickly, attach those details to a specific airline, and
 confirm a flight booking with the start city, end city and travel
-date.  The application gives them a single graphical window in which
-to do all of that, while protecting the underlying data against
-typical mistakes such as deleting a customer who still has open
-bookings.
+date.  The application gives them graphical interfaces for doing this, 
+while protecting the underlying data against typical mistakes such as 
+deleting a customer who still has open bookings.
 
 ## 2. Requirements Coverage
 
@@ -31,20 +30,20 @@ during marking.
 
 | Requirement | Implementation |
 |-------------|----------------|
-| Graphical user interface | `record_management_system/gui.py` |
-| Create / Update / Delete / Search/Display | Buttons on the form panel; backed by `RecordManager` methods |
+| Graphical user interface | `record_management_system/gui.py` provides the Tkinter desktop GUI; `web_frontend/` provides the browser GUI |
+| Create / Update / Delete / Search/Display | Buttons and forms in both interfaces; backed by `RecordManager` methods |
 | Internal list of dictionaries | `RecordManager.records: list[dict]` |
 | Saved to file system as JSON | `record_management_system/storage.py` |
-| Saved when the application closes | `RecordManagementGUI.close()` bound to `WM_DELETE_WINDOW` |
+| Saved when the application closes | `RecordManagementGUI.close()` bound to `WM_DELETE_WINDOW`; browser changes are saved through the Flask API when served by `web.py` |
 | Storage check on application start | `RecordManager.from_file()` calls `load_records()` which returns `[]` when the file is missing |
 | Three record types with specified fields | `records.py` defines `CLIENT_FIELDS`, `AIRLINE_FIELDS`, `FLIGHT_FIELDS` |
-| Unit tests for each module | `tests/test_records.py`, `test_storage.py`, `test_manager.py`, `test_gui.py`, `test_main.py` |
-| Source control (Git) | Repository initialised at the project root |
+| Unit tests for each module | `tests/test_records.py`, `test_storage.py`, `test_manager.py`, `test_gui.py`, `test_main.py`, `test_web.py` |
+| Source control (Git) | Repository initialised at the project root and pushed to GitHub |
 | PyInstaller-style commit messages | Documented in `docs/github_setup.md` |
 
 ## 3. System Architecture
 
-The project is split into five Python modules inside the
+The project is split into Python modules inside the
 `record_management_system` package.  Each module has a single,
 well-defined responsibility, which makes the code easier to test and
 also matches the team's role allocation.
@@ -73,16 +72,21 @@ also matches the team's role allocation.
   The colour palette and ttk styles are defined in one dictionary
   (`PALETTE`) so the look-and-feel can be tweaked without touching
   the rest of the file.
+* `web.py` creates a small Flask backend for the browser interface. It
+  serves the files in `web_frontend/` and exposes `/api/records` so the
+  browser can read and write records through the same `RecordManager`,
+  validation rules and JSON storage used by the desktop application.
 * `main.py` wires everything together.  It configures Python's
   `logging` package, computes the default path for `records.json`,
   builds a `RecordManager` from that path and hands it to the GUI.
 
-This layered architecture is deliberate.  Pure functions live in
+This layered architecture is deliberate. Pure functions live in
 `records.py`, persistence is isolated in `storage.py`, business logic
-lives in `manager.py`, and only `gui.py` and `main.py` depend on
-Tkinter.  The whole application can therefore be exercised by unit
-tests without ever opening a window, which is essential for fast
-feedback during development and grading.
+lives in `manager.py`, the desktop interface lives in `gui.py`, and
+the browser interface is connected through `web.py` and `web_frontend/`.
+The HTML browser version, Tkinter desktop version and Python backend
+therefore share the same core record-management logic instead of
+becoming three separate implementations.
 
 ## 4. Data Model And Validation
 
@@ -144,7 +148,7 @@ catastrophic save can be reverted by hand.  Both features are
 straightforward operations that materially raise the reliability of
 the system without complicating its public interface.
 
-## 6. Graphical User Interface
+## 6. Graphical User Interface And Web Front End
 
 The GUI is divided into four regions stacked vertically:
 
@@ -179,56 +183,58 @@ strict project brief but they make the application noticeably more
 useful for a working travel agent without changing the data model.
 
 An additional browser-based front end was added in `web_frontend/`
-using HTML, CSS and JavaScript. It follows the supplied preview design
-more closely, with top tabs for Clients, Airlines and Flights, a
-full-width record table, a Filters panel above the table, and a form
-panel that only appears when the user creates a new record or selects
-a record and chooses "Edit Selected". The selected table row is shown
-in dark blue so the user can clearly see which record is active.
+using HTML, CSS and JavaScript. It follows the supplied UI/UX preview
+design, with top tabs for Clients, Airlines and Flights, clean panels,
+full-width record tables, create/edit panels, selected row feedback,
+example data, and Import Data / Export Data controls. The filtering
+structure was also added to the browser version so it aligns more
+closely with the original Tkinter workflow.
 
 The browser front end does not replace the Tkinter application. It is
-a separate interface that demonstrates the same record-management
-workflow in a web-style layout. It can be served by a small Flask
-backend, which exposes `/api/records` and reuses the same JSON storage
-and validation layer as the Python application. If the HTML file is
-opened directly, it falls back to browser local storage. It supports
-create, update, delete, search, filtering, sorting, flight dropdowns,
-example data, and Import Data / Export Data controls.
+a second interface for the same record-management workflow. When run
+with `python -m record_management_system.web`, Flask serves the browser
+files and exposes `GET /api/records` and `PUT /api/records`. Those
+routes use the same `RecordManager`, validation rules and JSON storage
+as the Python desktop application. If the HTML file is opened directly,
+it falls back to browser local storage for demonstration purposes. This
+means the HTML browser version, Tkinter GUI and Python backend are
+joined together while still preserving the original desktop route.
 
 ## 7. Testing Strategy
 
-The repository contains a `tests/` folder with five test modules, one
-per source module, and 79 individual test cases written using
-Python's built-in `unittest` framework.  No third-party packages are
-required to run them.
+The repository contains a `tests/` folder with unit tests written
+using Python's built-in `unittest` framework. The latest validation
+run passes with 82 tests.
 
-Coverage falls into four groups:
+Coverage falls into five groups:
 
 * **Builder and validation tests** in `test_records.py` exercise
-  every helper function with both well-formed and intentionally
-  broken inputs, including edge cases such as boolean values being
-  passed where integers are expected and date strings using `/` or
-  `T` as separators.
+  helper functions with both well-formed and intentionally broken
+  inputs, including edge cases such as boolean values being passed
+  where integers are expected, invalid positive ID values, and date
+  strings using `/` or `T` as separators.
 * **Persistence tests** in `test_storage.py` cover the missing-file
   case, valid round-trips, parent-directory creation, the backup
   file produced on overwrite, and several rejection cases.
 * **Manager tests** in `test_manager.py` cover the full CRUD
-  lifecycle, search and filter, referential-integrity checks (a
-  client used by a flight cannot be deleted), statistics, and the
-  sort helper.
-* **GUI helper tests** in `test_gui.py` cover the pure helper
-  `form_fields_for` and the palette dictionary, which are
-  Tkinter-independent.  The full GUI is not instantiated in tests
-  because `tkinter.Tk()` cannot be created on a headless test
-  runner.
+  lifecycle, search and filter, referential-integrity checks, flight
+  reporting helpers such as finding flights by client or airline,
+  statistics, and sorting behaviour.
+* **GUI helper tests** in `test_gui.py` cover Tkinter-independent
+  helpers such as `form_fields_for` and the palette dictionary. The
+  full GUI is not instantiated in tests because `tkinter.Tk()` cannot
+  be created on a headless test runner.
+* **Web backend tests** in `test_web.py` cover the Flask application,
+  including `GET /api/records`, `PUT /api/records`, and invalid API
+  payload handling.
 
 Tests can be run from the project root with:
 
 ```text
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests
 ```
 
-All 75 tests pass on a clean install of Python 3.10.
+All 82 tests pass on a clean install of Python 3.10.
 
 ## 8. Source Control And Workflow
 
@@ -238,7 +244,7 @@ PyInstaller commit message conventions specified in the brief:
 * one logical change per commit;
 * subject line under 50 characters;
 * subject prefixed by a subsystem name (`gui`, `manager`, `storage`,
-  `tests`, `docs`);
+  `tests`, `docs`, `web`);
 * present tense and a closing period on the subject line;
 * an optional body, separated by a blank line, wrapped at about 72
   characters.
@@ -285,7 +291,7 @@ roles.  Because the modules were designed around clear seams, role
 ownership maps directly onto specific files:
 
 * **Programmer** - owns the Python logic in `records.py`,
-  `storage.py`, `manager.py` and `main.py`, runs the linter, and
+  `storage.py`, `manager.py`, `main.py` and `web.py`, runs the linter, and
   reviews pull requests touching these files.
 * **GUI / UX Designer** - owns `gui.py`, the colour palette, the
   layout grids, the keyboard shortcuts and the menu.  Works with
@@ -320,9 +326,9 @@ architecture.
 The Record Management System delivers the four CRUD operations
 required by the brief over three record types, persists the data as
 JSON, reloads automatically on startup, validates everything that
-crosses its public interface and is covered by 79 passing unit
-tests.  The codebase is small enough to be read end-to-end in an
-afternoon while still being structured into clear, single-purpose
-modules.  The architecture supports the team's role allocation and
-the project's source-control conventions, and leaves obvious room for
-future improvement without rework.
+crosses its public interface and is covered by 82 passing unit tests.
+The codebase is small enough to be read end-to-end in an afternoon
+while still being structured into clear, single-purpose modules. The
+architecture supports the team's role allocation, joins the HTML
+browser front end, Tkinter desktop GUI and Python backend together,
+and leaves obvious room for future improvement without rework.
