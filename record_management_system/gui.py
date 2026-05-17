@@ -673,7 +673,7 @@ class RecordManagementGUI:
 
         try:
             self.manager.save()
-        except ValueError as exc:
+        except (OSError, ValueError) as exc:
             messagebox.showerror("Could not save records", str(exc))
             return
         self.root.destroy()
