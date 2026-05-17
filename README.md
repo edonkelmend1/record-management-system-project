@@ -1,7 +1,8 @@
 # Record Management System
 
-A Python and Tkinter application that lets a specialist travel agent
-manage client, airline and flight records from a single window.  The
+A Python record management application that lets a specialist travel
+agent manage client, airline and flight records through either a
+Tkinter desktop GUI and a browser-based front end. The
 project was developed for the **Software Development In Practice**
 module at the University of Liverpool.
 
@@ -25,7 +26,8 @@ persists data to the file system as JSON when the window is closed.
 - Export the current filtered view to CSV from the File menu.
 - Status bar showing total / filtered record counts.
 - Separate browser front end in `web_frontend/` with HTML, CSS and
-  JavaScript, including local storage and data import/export controls.
+  JavaScript, including Flask-backed JSON storage, local-storage demo
+  fallback, and data import/export controls.
 - Unit tests for every non-GUI module using Python's `unittest`.
 
 ## Project Structure
@@ -38,12 +40,14 @@ record_management_system/
   manager.py         RecordManager - CRUD, search, queries, statistics.
   gui.py             Tkinter user interface.
   main.py            Application entry point and logging setup.
+  web.py             Flask entry point for the browser front end.
 tests/
   test_records.py    Builder, validator and helper tests.
   test_storage.py    JSON load / save round-trip tests.
   test_manager.py    CRUD, search and reference-integrity tests.
   test_gui.py        Pure GUI helpers (Tkinter independent).
   test_main.py       Entry-point smoke tests.
+  test_web.py        Flask API and browser backend tests.
 data/
   records.json       Created on first save.
 docs/
@@ -85,6 +89,11 @@ Then open:
 ```text
 http://127.0.0.1:5000
 ```
+If Flask is not installed, run:
+
+```powershell
+python -m pip install flask
+```
 
 You can also open this file directly in a browser for a local-storage
 only demo:
@@ -103,7 +112,7 @@ as a file, it falls back to browser local storage.
 python -m unittest discover -s tests -v
 ```
 
-All 79 unit tests should pass.
+All 82 unit tests should pass.
 
 ## Record Format
 
