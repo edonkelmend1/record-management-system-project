@@ -188,9 +188,12 @@ in dark blue so the user can clearly see which record is active.
 
 The browser front end does not replace the Tkinter application. It is
 a separate interface that demonstrates the same record-management
-workflow in a web-style layout. It supports create, update, delete,
-search, filtering, sorting, flight dropdowns, example data, local
-storage, and Import Data / Export Data controls.
+workflow in a web-style layout. It can be served by a small Flask
+backend, which exposes `/api/records` and reuses the same JSON storage
+and validation layer as the Python application. If the HTML file is
+opened directly, it falls back to browser local storage. It supports
+create, update, delete, search, filtering, sorting, flight dropdowns,
+example data, and Import Data / Export Data controls.
 
 ## 7. Testing Strategy
 

@@ -2,6 +2,7 @@ const CLIENT = "Client";
 const AIRLINE = "Airline";
 const FLIGHT = "Flight";
 const STORAGE_KEY = "record-management-system.records";
+const API_BASE = window.location.protocol === "file:" ? "" : "/api";
 
 const fieldsByType = {
   [CLIENT]: [
@@ -105,6 +106,7 @@ let selectedIndex = null;
 let sortColumn = null;
 let sortReverse = false;
 let activeType = CLIENT;
+let usingBackend = false;
 
 const elements = {
   body: document.getElementById("records-body"),
@@ -166,6 +168,50 @@ function loadRecords() {
 
 function saveRecords() {
   validateAllRecords(records);
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(records, null, 2));
+}
+
+async function loadBackendRecords() {
+  if (!API_BASE) {
+    return false;
+  }
+  try {
+    const response = await fetch(`${API_BASE}/records`);
+    if (!response.ok) {
+      throw new Error("Backend records could not be loaded.");
+    }
+    const payload = await response.json();
+    if (!Array.isArray(payload.records)) {
+      throw new Error("Backend response did not contain a records list.");
+    }
+    validateAllRecords(payload.records);
+    records = payload.records;
+    usingBackend = true;
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(records, null, 2));
+    return true;
+  } catch (error) {
+    usingBackend = false;
+    setStatus(`${error.message} Using browser storage instead.`, true);
+    return false;
+  }
+}
+
+async function persistRecords() {
+  validateAllRecords(records);
+  if (!usingBackend) {
+    saveRecords();
+    return;
+  }
+  const response = await fetch(`${API_BASE}/records`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({records}),
+  });
+  const payload = await response.json();
+  if (!response.ok) {
+    throw new Error(payload.error || "Records could not be saved.");
+  }
+  records = payload.records;
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(records, null, 2));
 }
 
@@ -663,12 +709,12 @@ function setSort(column) {
   render();
 }
 
-function createRecord(event) {
+async function createRecord(event) {
   event.preventDefault();
   try {
     const record = buildRecord(elements.formType.value, formValues());
     records.push(record);
-    saveRecords();
+    await persistRecords();
     selectedIndex = records.length - 1;
     setFormValues(record);
     hideFormPanel();
@@ -679,7 +725,7 @@ function createRecord(event) {
   }
 }
 
-function updateRecord() {
+async function updateRecord() {
   if (selectedIndex === null) {
     setStatus("Choose a record to update.", true);
     return;
@@ -688,7 +734,7 @@ function updateRecord() {
     const existing = records[selectedIndex];
     const replacement = buildRecord(existing.Type, formValues(), existing);
     records[selectedIndex] = replacement;
-    saveRecords();
+    await persistRecords();
     setFormValues(replacement);
     hideFormPanel();
     render();
@@ -698,7 +744,7 @@ function updateRecord() {
   }
 }
 
-function deleteSelectedRecord() {
+async function deleteSelectedRecord() {
   if (selectedIndex === null) {
     setStatus("Choose a record to delete.", true);
     return;
@@ -715,7 +761,12 @@ function deleteSelectedRecord() {
   }
   records.splice(selectedIndex, 1);
   selectedIndex = null;
-  saveRecords();
+  try {
+    await persistRecords();
+  } catch (error) {
+    setStatus(error.message, true);
+    return;
+  }
   closeDeleteModal();
   clearForm();
   setStatus("Record deleted.");
@@ -777,7 +828,7 @@ function importJson(event) {
     return;
   }
   const reader = new FileReader();
-  reader.addEventListener("load", () => {
+  reader.addEventListener("load", async () => {
     try {
       const parsed = JSON.parse(String(reader.result));
       if (!Array.isArray(parsed)) {
@@ -786,7 +837,7 @@ function importJson(event) {
       validateAllRecords(parsed);
       records = parsed;
       selectedIndex = null;
-      saveRecords();
+      await persistRecords();
       clearForm();
       render();
       setStatus("JSON records imported.");
@@ -799,10 +850,15 @@ function importJson(event) {
   reader.readAsText(file);
 }
 
-function loadExampleData() {
+async function loadExampleData() {
   records = structuredClone(exampleRecords);
   selectedIndex = null;
-  saveRecords();
+  try {
+    await persistRecords();
+  } catch (error) {
+    setStatus(error.message, true);
+    return;
+  }
   clearForm();
   setActiveType(CLIENT);
   setStatus("Example records loaded.");
@@ -879,4 +935,15 @@ document.querySelectorAll(".tab").forEach((tab) => {
   });
 });
 
-setActiveType(CLIENT);
+async function initialise() {
+  const loadedFromBackend = await loadBackendRecords();
+  setActiveType(CLIENT);
+  setStatus(
+    loadedFromBackend
+      ? "Connected to Python Flask backend."
+      : "Using browser storage. Start Flask to save through Python.",
+    !loadedFromBackend && Boolean(API_BASE)
+  );
+}
+
+initialise();

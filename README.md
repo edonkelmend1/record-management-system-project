@@ -74,16 +74,28 @@ is closed.
 
 ## Run The Browser Front End
 
-Open this file in a browser:
+For the full browser front end backed by Python and `records.json`, run:
+
+```powershell
+python -m record_management_system.web
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5000
+```
+
+You can also open this file directly in a browser for a local-storage
+only demo:
 
 ```text
 web_frontend/index.html
 ```
 
-The browser front end runs separately from the Tkinter app. It stores
-records in browser local storage, includes starter example records,
-and provides Import Data / Export Data controls using the same JSON
-record structure.
+When served through Flask, the browser front end reads and writes the
+same JSON record structure through `/api/records`. When opened directly
+as a file, it falls back to browser local storage.
 
 ## Run The Tests
 
