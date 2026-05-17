@@ -47,6 +47,9 @@ class RecordManager:
         # match the schema.
         for record in self.records:
             validate_record(record)
+        for record in self.records:
+            if record.get("Type") == FLIGHT:
+                self._validate_flight_references(record)
 
     # ------------------------------------------------------------------
     # Construction / persistence helpers

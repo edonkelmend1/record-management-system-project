@@ -77,6 +77,34 @@ class FlightReferenceTests(unittest.TestCase):
                 },
             )
 
+    def test_loaded_flight_requires_existing_references(self):
+        records = [
+            {
+                "ID": 1,
+                "Type": CLIENT,
+                "Name": "Sam",
+                "Address Line 1": "",
+                "Address Line 2": "",
+                "Address Line 3": "",
+                "City": "",
+                "State": "",
+                "Zip Code": "",
+                "Country": "",
+                "Phone Number": "1",
+            },
+            {
+                "Type": FLIGHT,
+                "Client_ID": 1,
+                "Airline_ID": 99,
+                "Date": "2026-05-09",
+                "Start City": "Rome",
+                "End City": "Berlin",
+            },
+        ]
+
+        with self.assertRaises(ValueError):
+            RecordManager(records)
+
     def test_valid_flight_creates_record(self):
         manager = _seed_manager()
         flight = manager.create_record(

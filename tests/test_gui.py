@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import Mock, patch
 
 from record_management_system.gui import FORM_FIELDS, PALETTE, form_fields_for
 from record_management_system.records import AIRLINE, CLIENT, FLIGHT
@@ -45,6 +46,21 @@ class PaletteTests(unittest.TestCase):
             "danger",
         }
         self.assertTrue(required.issubset(PALETTE.keys()))
+
+
+class SaveErrorTests(unittest.TestCase):
+    def test_save_records_shows_file_error(self):
+        from record_management_system.gui import RecordManagementGUI
+
+        gui = object.__new__(RecordManagementGUI)
+        gui.manager = Mock()
+        gui.status_text = Mock()
+        gui.manager.save.side_effect = OSError("disk is full")
+
+        with patch("record_management_system.gui.messagebox.showerror") as showerror:
+            gui._save_records()
+
+        showerror.assert_called_once_with("Could not save records", "disk is full")
 
 
 if __name__ == "__main__":

@@ -106,9 +106,12 @@ def parse_int(value: Any, field_name: str) -> int:
     if not text:
         raise ValueError(f"{field_name} is required.")
     try:
-        return int(text)
+        parsed = int(text)
     except ValueError as exc:
         raise ValueError(f"{field_name} must be an integer.") from exc
+    if parsed <= 0:
+        raise ValueError(f"{field_name} must be a positive integer.")
+    return parsed
 
 
 def validate_phone(value: str) -> str:
@@ -330,7 +333,38 @@ def validate_record(record: dict[str, Any]) -> None:
 # ---------------------------------------------------------------------------
 
 
-def summarize_record(record: dict[str, Any]) -> str:
+def find_record_name(
+    records: list[dict[str, Any]],
+    record_type: str,
+    record_id: Any,
+) -> str:
+    """Return a display name for a client or airline ID if available."""
+
+    for record in records:
+        if record.get("Type") != record_type or record.get("ID") != record_id:
+            continue
+        if record_type == CLIENT:
+            return clean_text(record.get("Name"))
+        if record_type == AIRLINE:
+            return clean_text(record.get("Company Name"))
+    return ""
+
+
+def _named_reference(
+    records: list[dict[str, Any]] | None,
+    record_type: str,
+    record_id: Any,
+) -> str:
+    name = find_record_name(records or [], record_type, record_id)
+    if name:
+        return f"{name} (#{record_id})"
+    return str(record_id)
+
+
+def summarize_record(
+    record: dict[str, Any],
+    records: list[dict[str, Any]] | None = None,
+) -> str:
     """Return a short display summary for a record (used by the GUI table)."""
 
     record_type = record.get("Type", "Record")
@@ -340,13 +374,17 @@ def summarize_record(record: dict[str, Any]) -> str:
         return f"Airline #{record.get('ID')}: {record.get('Company Name', '')}"
     if record_type == FLIGHT:
         return (
-            f"Flight: client {record.get('Client_ID')} with airline "
-            f"{record.get('Airline_ID')}"
+            "Flight: "
+            f"{_named_reference(records, CLIENT, record.get('Client_ID'))} with "
+            f"{_named_reference(records, AIRLINE, record.get('Airline_ID'))}"
         )
     return str(record_type)
 
 
-def record_details(record: dict[str, Any]) -> str:
+def record_details(
+    record: dict[str, Any],
+    records: list[dict[str, Any]] | None = None,
+) -> str:
     """Return a compact details string used as a secondary table column."""
 
     record_type = record.get("Type")
@@ -362,6 +400,8 @@ def record_details(record: dict[str, Any]) -> str:
     if record_type == FLIGHT:
         return (
             f"{record.get('Date', '')}: "
-            f"{record.get('Start City', '')} -> {record.get('End City', '')}"
+            f"{record.get('Start City', '')} -> {record.get('End City', '')} | "
+            f"Client: {_named_reference(records, CLIENT, record.get('Client_ID'))} | "
+            f"Airline: {_named_reference(records, AIRLINE, record.get('Airline_ID'))}"
         )
     return ""

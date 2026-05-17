@@ -468,8 +468,8 @@ class RecordManagementGUI:
                 values=(
                     index,
                     record.get("Type", ""),
-                    summarize_record(record),
-                    record_details(record),
+                    summarize_record(record, self.manager.records),
+                    record_details(record, self.manager.records),
                 ),
                 tags=(tag,),
             )
@@ -516,7 +516,7 @@ class RecordManagementGUI:
                 self.form_type.get(),
                 self._form_values(),
             )
-        except ValueError as exc:
+        except (OSError, ValueError) as exc:
             messagebox.showerror("Could not create record", str(exc))
             return
         self._refresh_table()
@@ -615,7 +615,7 @@ class RecordManagementGUI:
     def _save_records(self) -> None:
         try:
             self.manager.save()
-        except ValueError as exc:
+        except (OSError, ValueError) as exc:
             messagebox.showerror("Could not save records", str(exc))
             return
         self.status_text.set("Records saved.")

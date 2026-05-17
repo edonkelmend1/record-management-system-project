@@ -53,6 +53,12 @@ class ParseIntTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             parse_int("abc", "ID")
 
+    def test_rejects_zero_and_negative_values(self):
+        for value in ("0", "-1"):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    parse_int(value, "ID")
+
 
 class PhoneValidationTests(unittest.TestCase):
     def test_accepts_international_format(self):
@@ -272,6 +278,25 @@ class DisplayHelperTests(unittest.TestCase):
         self.assertIn("London", record_details(client))
         self.assertEqual(record_details(airline), "Air")
         self.assertIn("Rome", record_details(flight))
+
+    def test_flight_display_can_show_client_and_airline_names(self):
+        records = [
+            build_client_record({"Name": "Ada Lovelace", "Phone Number": "1"}, 1),
+            build_airline_record({"Company Name": "Example Air"}, 2),
+            build_flight_record(
+                {
+                    "Client_ID": "1",
+                    "Airline_ID": "2",
+                    "Date": "2026-05-09",
+                    "Start City": "London",
+                    "End City": "Paris",
+                }
+            ),
+        ]
+        flight = records[-1]
+
+        self.assertIn("Ada Lovelace", summarize_record(flight, records))
+        self.assertIn("Example Air", record_details(flight, records))
 
 
 class ConstantsTests(unittest.TestCase):
