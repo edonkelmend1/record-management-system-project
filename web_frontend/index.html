@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Record Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <h1>Record Management System</h1>
+        <p>Specialist Travel Agent</p>
+      </div>
+      <div class="header-actions">
+        <button class="secondary data-button" id="export-json" type="button">Export Data</button>
+        <label class="secondary file-button data-button" for="import-json">Import Data</label>
+        <button class="secondary data-button" id="load-examples" type="button">Load Examples</button>
+        <input id="import-json" type="file" accept="application/json">
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Record type navigation">
+      <button class="tab active" data-tab="Client" type="button">Clients</button>
+      <button class="tab" data-tab="Airline" type="button">Airlines</button>
+      <button class="tab" data-tab="Flight" type="button">Flights</button>
+    </nav>
+
+    <section class="workspace">
+      <section class="panel filters-panel">
+        <h2>Filters</h2>
+        <div class="filters-grid">
+          <div class="field">
+            <label id="search-label" for="search-text">Search clients</label>
+            <input id="search-text" type="search" placeholder="Search records">
+          </div>
+          <div class="field">
+            <label for="record-type-filter">Table type</label>
+            <select id="record-type-filter">
+              <option value="All">All records</option>
+              <option value="Client">Clients</option>
+              <option value="Airline">Airlines</option>
+              <option value="Flight">Flights</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="client-flight-filter">Client flights</label>
+            <select id="client-flight-filter"></select>
+          </div>
+          <div class="field">
+            <label for="airline-flight-filter">Airline flights</label>
+            <select id="airline-flight-filter"></select>
+          </div>
+          <div class="filter-actions">
+            <button class="primary" id="apply-filters" type="button">Search</button>
+            <button class="secondary" id="clear-filters" type="button">Clear</button>
+          </div>
+        </div>
+        <p id="status-message" class="status-message" aria-live="polite"></p>
+      </section>
+
+      <section class="panel form-panel hidden" id="form-panel">
+        <div class="form-heading">
+          <h2 id="form-title">Client Details</h2>
+          <button class="secondary compact" id="clear-form" type="button">Cancel</button>
+        </div>
+
+        <div class="field">
+          <label for="form-type">Record type</label>
+          <select id="form-type">
+            <option value="Client">Client</option>
+            <option value="Airline">Airline</option>
+            <option value="Flight">Flight</option>
+          </select>
+        </div>
+
+        <form id="record-form">
+          <div id="form-fields" class="form-grid"></div>
+          <div class="button-row form-buttons">
+            <button class="primary" id="create-record" type="submit">Save Client</button>
+            <button class="secondary" id="update-record" type="button">Update Selected</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr id="table-head"></tr>
+            </thead>
+            <tbody id="records-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel button-row">
+        <button class="primary" id="new-record" type="button">Create New Client</button>
+        <button class="secondary" id="edit-selected" type="button">Edit Selected</button>
+        <button class="danger" id="delete-record" type="button">Delete Selected</button>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="delete-modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="delete-title">
+      <h2 id="delete-title">Delete record?</h2>
+      <p>Are you sure you want to delete this record? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="secondary" id="cancel-delete" type="button">Cancel</button>
+        <button class="danger" id="confirm-delete" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

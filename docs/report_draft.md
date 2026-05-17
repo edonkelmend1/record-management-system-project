@@ -178,10 +178,24 @@ to a user-chosen CSV file - and "Exit".  These are extras beyond the
 strict project brief but they make the application noticeably more
 useful for a working travel agent without changing the data model.
 
+An additional browser-based front end was added in `web_frontend/`
+using HTML, CSS and JavaScript. It follows the supplied preview design
+more closely, with top tabs for Clients, Airlines and Flights, a
+full-width record table, a Filters panel above the table, and a form
+panel that only appears when the user creates a new record or selects
+a record and chooses "Edit Selected". The selected table row is shown
+in dark blue so the user can clearly see which record is active.
+
+The browser front end does not replace the Tkinter application. It is
+a separate interface that demonstrates the same record-management
+workflow in a web-style layout. It supports create, update, delete,
+search, filtering, sorting, flight dropdowns, example data, local
+storage, and Import Data / Export Data controls.
+
 ## 7. Testing Strategy
 
 The repository contains a `tests/` folder with five test modules, one
-per source module, and 75 individual test cases written using
+per source module, and 79 individual test cases written using
 Python's built-in `unittest` framework.  No third-party packages are
 required to run them.
 
@@ -291,9 +305,9 @@ before opening a ticket.
 
 The current system meets the brief and adds several quality-of-life
 features.  Further work could include drop-down date pickers for the
-flight date field, a reporting view that shows every booking for a
-given client, a CSV import that mirrors the existing CSV export, and
-a swap from JSON to SQLite if the travel agent's data set grew
+flight date field, CSV import for users who prefer spreadsheet-based
+workflows, and a swap from JSON to a local SQLite database using
+Python's built-in `sqlite3` module if the travel agent's data set grew
 beyond a few thousand records.  None of these are necessary for the
 project but each is a low-risk extension of the current
 architecture.
@@ -303,7 +317,7 @@ architecture.
 The Record Management System delivers the four CRUD operations
 required by the brief over three record types, persists the data as
 JSON, reloads automatically on startup, validates everything that
-crosses its public interface and is covered by 75 passing unit
+crosses its public interface and is covered by 79 passing unit
 tests.  The codebase is small enough to be read end-to-end in an
 afternoon while still being structured into clear, single-purpose
 modules.  The architecture supports the team's role allocation and

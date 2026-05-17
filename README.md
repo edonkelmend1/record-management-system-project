@@ -24,6 +24,8 @@ persists data to the file system as JSON when the window is closed.
   file, so a crashed write cannot lose existing data.
 - Export the current filtered view to CSV from the File menu.
 - Status bar showing total / filtered record counts.
+- Separate browser front end in `web_frontend/` with HTML, CSS and
+  JavaScript, including local storage and data import/export controls.
 - Unit tests for every non-GUI module using Python's `unittest`.
 
 ## Project Structure
@@ -47,6 +49,10 @@ data/
 docs/
   report_draft.md    Coursework report.
   github_setup.md    Setup and commit-message guide for the team.
+web_frontend/
+  index.html         Browser-based front end.
+  styles.css         Browser front-end styling.
+  app.js             Browser front-end behaviour and validation.
 ```
 
 ## Run The Application
@@ -66,13 +72,26 @@ py -m record_management_system.main
 The first run creates `data/records.json` automatically when the window
 is closed.
 
+## Run The Browser Front End
+
+Open this file in a browser:
+
+```text
+web_frontend/index.html
+```
+
+The browser front end runs separately from the Tkinter app. It stores
+records in browser local storage, includes starter example records,
+and provides Import Data / Export Data controls using the same JSON
+record structure.
+
 ## Run The Tests
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-All 75 unit tests should pass.
+All 79 unit tests should pass.
 
 ## Record Format
 
