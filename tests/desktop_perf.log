@@ -1,0 +1,578 @@
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_bulk_airline_insert
+2026-05-20 18:49:20  INFO      Benchmark: 100 × create_record(AIRLINE)
+2026-05-20 18:49:20  INFO        100 × create_record(AIRLINE)                         0.0007 s
+2026-05-20 18:49:20  INFO        .-- Chart: 100× AIRLINE insert — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_bulk_client_insert
+2026-05-20 18:49:20  INFO      Benchmark: 100 × create_record(CLIENT)
+2026-05-20 18:49:20  INFO        100 × create_record(CLIENT)                          0.0007 s
+2026-05-20 18:49:20  INFO        .-- Chart: 100× CLIENT insert — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_bulk_flight_insert
+2026-05-20 18:49:20  INFO      Benchmark: 100 × create_record(FLIGHT)
+2026-05-20 18:49:20  INFO        100 × create_record(FLIGHT)                          0.0001 s
+2026-05-20 18:49:20  INFO        .-- Chart: 100× FLIGHT insert — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 2.0000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_list_records_performance
+2026-05-20 18:49:20  INFO      Benchmark: list_records() over 100 records
+2026-05-20 18:49:20  INFO        list_records() (100 records)                         0.0000 s
+2026-05-20 18:49:20  INFO        .-- Chart: list_records() — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_save_reload_roundtrip
+2026-05-20 18:49:20  INFO      Benchmark: save() + from_file() round-trip with 50 records
+2026-05-20 18:49:20  INFO        save() + from_file() (50 records)                    0.0006 s
+2026-05-20 18:49:20  INFO        .-- Chart: save + reload round-trip — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0006 / 2.0000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_search_after_bulk_insert
+2026-05-20 18:49:20  INFO      Benchmark: search_records('Perf Client 0050') over 100 records
+2026-05-20 18:49:20  INFO        search_records('Perf Client 0050')                   0.0001 s
+2026-05-20 18:49:20  INFO        .-- Chart: search_records() free-text — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 0.5000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_search_type_filtered
+2026-05-20 18:49:20  INFO      Benchmark: search_records(type=CLIENT) over 100 records
+2026-05-20 18:49:20  INFO        search_records(type=CLIENT) over 100                 0.0000 s
+2026-05-20 18:49:20  INFO        .-- Chart: search_records() type-filtered — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestComponentPerformance.test_statistics_performance
+2026-05-20 18:49:20  INFO      Benchmark: statistics() over 150 records
+2026-05-20 18:49:20  INFO        statistics() (150 records)                           0.0000 s
+2026-05-20 18:49:20  INFO        .-- Chart: statistics() — time vs threshold
+2026-05-20 18:49:20  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      CLASS SETUP  TestWebPerformance
+2026-05-20 18:49:20  INFO      Launching: python -m record_management_system.web
+2026-05-20 18:49:20  INFO      Server ready at http://127.0.0.1:5000  (PID 26131).
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestWebPerformance.test_api_get_records_json_metrics
+2026-05-20 18:49:20  INFO        [HTTP] GET /api/records  (JSON API)                  
+2026-05-20 18:49:20  INFO          Status       : 200  |  Time : 1.7 ms  |  Size : 15 B
+2026-05-20 18:49:20  INFO          Content-Type : application/json
+2026-05-20 18:49:20  INFO          Records in payload : 0
+2026-05-20 18:49:20  INFO        .-- Chart: GET /api/records — latency vs threshold
+2026-05-20 18:49:20  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        1.7 / 500.0     ms    [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestWebPerformance.test_api_put_records_latency
+2026-05-20 18:49:20  INFO        [HTTP] PUT /api/records  (write round-trip)          
+2026-05-20 18:49:20  INFO          Status       : 200  |  Time : 1.1 ms  |  Size : 15 B
+2026-05-20 18:49:20  INFO          Content-Type : application/json
+2026-05-20 18:49:20  INFO        .-- Chart: PUT /api/records — latency vs threshold
+2026-05-20 18:49:20  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        1.1 / 1000.0    ms    [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestWebPerformance.test_concurrent_get_throughput
+2026-05-20 18:49:20  INFO        [CONCURRENT] 10 × GET /api/records
+2026-05-20 18:49:20  INFO          Wall time        : 0.004 s
+2026-05-20 18:49:20  INFO          Latency (ms)     : mean=2.1  peak=3.1
+2026-05-20 18:49:20  INFO          HTTP 200 count   : 10 / 10
+2026-05-20 18:49:20  INFO        .-- Chart: 10× concurrent GET — wall time & latency vs threshold
+2026-05-20 18:49:20  INFO        | Wall time      [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        4.3 / 5000.0    ms    [PASS]
+2026-05-20 18:49:20  INFO        | Lat mean       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        2.1 / 500.0     ms    [PASS]
+2026-05-20 18:49:20  INFO        | Lat peak       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        3.1 / 500.0     ms    [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestWebPerformance.test_index_html_metrics
+2026-05-20 18:49:20  INFO        [HTTP] GET /  (HTML index page)                      
+2026-05-20 18:49:20  INFO          Status       : 200  |  Time : 0.4 ms  |  Size : 4681 B
+2026-05-20 18:49:20  INFO          Content-Type : text/html; charset=utf-8
+2026-05-20 18:49:20  INFO          HTML tags found  : body, button, div, form, h1, h2, head, header, html, input, label, link, main, meta, nav, option, p, script, section, select, table, tbody, thead, title, tr
+2026-05-20 18:49:20  INFO          <title> text     : Record Management System
+2026-05-20 18:49:20  INFO        .-- Chart: GET /  HTML page — latency vs threshold
+2026-05-20 18:49:20  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.4 / 500.0     ms    [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:20  INFO      ============================================================
+2026-05-20 18:49:20  INFO      TEST  TestWebPerformance.test_server_resource_usage_under_load
+2026-05-20 18:49:20  INFO      --- web_server_under_load ---
+2026-05-20 18:49:20  INFO        Samples : 1  (0.0 s window)
+2026-05-20 18:49:20  INFO        CPU     : mean=59.1%  peak=59.1%
+2026-05-20 18:49:20  INFO        RSS MB  : min=15.4  mean=15.4  peak=15.4
+2026-05-20 18:49:20  INFO        Threads : peak=1
+2026-05-20 18:49:20  INFO        .-- Chart: Web server under load — resource vs threshold
+2026-05-20 18:49:20  INFO        | CPU mean       [████████████████████████░░░░░░░░]       59.1 / 80.0      %     [PASS]
+2026-05-20 18:49:20  INFO        | RSS peak       [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]       15.4 / 300.0     MB    [PASS]
+2026-05-20 18:49:20  INFO        '-------------------------------------------------------------------
+2026-05-20 18:49:56  INFO      ============================================================
+2026-05-20 18:49:56  INFO      TEST  TestProcessPerformance.test_startup_resource_usage
+2026-05-20 18:49:56  INFO      Launching: python -m record_management_system.main
+2026-05-20 18:50:01  INFO      Process terminated after 5.03 s.
+2026-05-20 18:50:01  DEBUG     Process stderr:
+2026-05-20 18:49:56 [INFO] record_management_system.storage: Loaded 0 record(s) from /Users/heather/PycharmProjects/record-management-system-project-final/data/records.json.
+2026-05-20 18:50:01  INFO      --- startup_resource_usage ---
+2026-05-20 18:50:01  INFO        Samples : 48  (4.9 s window)
+2026-05-20 18:50:01  INFO        CPU     : mean=5.2%  peak=91.6%
+2026-05-20 18:50:01  INFO        RSS MB  : min=0.1  mean=118.1  peak=122.7
+2026-05-20 18:50:01  INFO        Threads : peak=13
+2026-05-20 18:50:01  INFO        .-- Chart: Tkinter app startup — resource vs threshold
+2026-05-20 18:50:01  INFO        | CPU mean       [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        5.2 / 80.0      %     [PASS]
+2026-05-20 18:50:01  INFO        | RSS peak       [█████████████░░░░░░░░░░░░░░░░░░░]      122.7 / 300.0     MB    [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      CLASS SETUP  TestWebPerformance
+2026-05-20 18:50:01  INFO      Launching: python -m record_management_system.web
+2026-05-20 18:50:01  INFO      Server ready at http://127.0.0.1:5000  (PID 26154).
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestWebPerformance.test_api_get_records_json_metrics
+2026-05-20 18:50:01  INFO        [HTTP] GET /api/records  (JSON API)                  
+2026-05-20 18:50:01  INFO          Status       : 200  |  Time : 0.8 ms  |  Size : 15 B
+2026-05-20 18:50:01  INFO          Content-Type : application/json
+2026-05-20 18:50:01  INFO          Records in payload : 0
+2026-05-20 18:50:01  INFO        .-- Chart: GET /api/records — latency vs threshold
+2026-05-20 18:50:01  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.8 / 500.0     ms    [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestWebPerformance.test_api_put_records_latency
+2026-05-20 18:50:01  INFO        [HTTP] PUT /api/records  (write round-trip)          
+2026-05-20 18:50:01  INFO          Status       : 200  |  Time : 1.2 ms  |  Size : 15 B
+2026-05-20 18:50:01  INFO          Content-Type : application/json
+2026-05-20 18:50:01  INFO        .-- Chart: PUT /api/records — latency vs threshold
+2026-05-20 18:50:01  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        1.2 / 1000.0    ms    [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestWebPerformance.test_concurrent_get_throughput
+2026-05-20 18:50:01  INFO        [CONCURRENT] 10 × GET /api/records
+2026-05-20 18:50:01  INFO          Wall time        : 0.005 s
+2026-05-20 18:50:01  INFO          Latency (ms)     : mean=3.0  peak=4.1
+2026-05-20 18:50:01  INFO          HTTP 200 count   : 10 / 10
+2026-05-20 18:50:01  INFO        .-- Chart: 10× concurrent GET — wall time & latency vs threshold
+2026-05-20 18:50:01  INFO        | Wall time      [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        5.4 / 5000.0    ms    [PASS]
+2026-05-20 18:50:01  INFO        | Lat mean       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        3.0 / 500.0     ms    [PASS]
+2026-05-20 18:50:01  INFO        | Lat peak       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        4.1 / 500.0     ms    [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestWebPerformance.test_index_html_metrics
+2026-05-20 18:50:01  INFO        [HTTP] GET /  (HTML index page)                      
+2026-05-20 18:50:01  INFO          Status       : 200  |  Time : 0.6 ms  |  Size : 4681 B
+2026-05-20 18:50:01  INFO          Content-Type : text/html; charset=utf-8
+2026-05-20 18:50:01  INFO          HTML tags found  : body, button, div, form, h1, h2, head, header, html, input, label, link, main, meta, nav, option, p, script, section, select, table, tbody, thead, title, tr
+2026-05-20 18:50:01  INFO          <title> text     : Record Management System
+2026-05-20 18:50:01  INFO        .-- Chart: GET /  HTML page — latency vs threshold
+2026-05-20 18:50:01  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.6 / 500.0     ms    [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestWebPerformance.test_server_resource_usage_under_load
+2026-05-20 18:50:01  INFO      --- web_server_under_load ---
+2026-05-20 18:50:01  INFO        Samples : 1  (0.0 s window)
+2026-05-20 18:50:01  INFO        CPU     : mean=156.7%  peak=156.7%
+2026-05-20 18:50:01  INFO        RSS MB  : min=13.7  mean=13.7  peak=13.7
+2026-05-20 18:50:01  INFO        Threads : peak=1
+2026-05-20 18:50:01  INFO        .-- Chart: Web server under load — resource vs threshold
+2026-05-20 18:50:01  INFO        | CPU mean       [████████████████████████████████]      156.7 / 80.0      %     [FAIL]
+2026-05-20 18:50:01  INFO        | RSS peak       [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]       13.7 / 300.0     MB    [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_bulk_airline_insert
+2026-05-20 18:50:01  INFO      Benchmark: 100 × create_record(AIRLINE)
+2026-05-20 18:50:01  INFO        100 × create_record(AIRLINE)                         0.0007 s
+2026-05-20 18:50:01  INFO        .-- Chart: 100× AIRLINE insert — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_bulk_client_insert
+2026-05-20 18:50:01  INFO      Benchmark: 100 × create_record(CLIENT)
+2026-05-20 18:50:01  INFO        100 × create_record(CLIENT)                          0.0008 s
+2026-05-20 18:50:01  INFO        .-- Chart: 100× CLIENT insert — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0008 / 1.0000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_bulk_flight_insert
+2026-05-20 18:50:01  INFO      Benchmark: 100 × create_record(FLIGHT)
+2026-05-20 18:50:01  INFO        100 × create_record(FLIGHT)                          0.0002 s
+2026-05-20 18:50:01  INFO        .-- Chart: 100× FLIGHT insert — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0002 / 2.0000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_list_records_performance
+2026-05-20 18:50:01  INFO      Benchmark: list_records() over 100 records
+2026-05-20 18:50:01  INFO        list_records() (100 records)                         0.0000 s
+2026-05-20 18:50:01  INFO        .-- Chart: list_records() — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_save_reload_roundtrip
+2026-05-20 18:50:01  INFO      Benchmark: save() + from_file() round-trip with 50 records
+2026-05-20 18:50:01  INFO        save() + from_file() (50 records)                    0.0007 s
+2026-05-20 18:50:01  INFO        .-- Chart: save + reload round-trip — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 2.0000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_search_after_bulk_insert
+2026-05-20 18:50:01  INFO      Benchmark: search_records('Perf Client 0050') over 100 records
+2026-05-20 18:50:01  INFO        search_records('Perf Client 0050')                   0.0001 s
+2026-05-20 18:50:01  INFO        .-- Chart: search_records() free-text — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 0.5000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_search_type_filtered
+2026-05-20 18:50:01  INFO      Benchmark: search_records(type=CLIENT) over 100 records
+2026-05-20 18:50:01  INFO        search_records(type=CLIENT) over 100                 0.0000 s
+2026-05-20 18:50:01  INFO        .-- Chart: search_records() type-filtered — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:50:01  INFO      ============================================================
+2026-05-20 18:50:01  INFO      TEST  TestComponentPerformance.test_statistics_performance
+2026-05-20 18:50:01  INFO      Benchmark: statistics() over 150 records
+2026-05-20 18:50:01  INFO        statistics() (150 records)                           0.0000 s
+2026-05-20 18:50:01  INFO        .-- Chart: statistics() — time vs threshold
+2026-05-20 18:50:01  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:50:01  INFO        '-------------------------------------------------------------------
+2026-05-20 18:58:28  INFO        .-- Chart: 100x CLIENT insert — time vs threshold
+2026-05-20 18:58:28  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0020 / 1.0000    s     [PASS]
+2026-05-20 18:58:28  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_bulk_airline_insert
+2026-05-20 18:59:02  INFO      Benchmark: 100 × create_record(AIRLINE)
+2026-05-20 18:59:02  INFO        100 × create_record(AIRLINE)                         0.0007 s
+2026-05-20 18:59:02  INFO        .-- Chart: 100× AIRLINE insert — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_bulk_client_insert
+2026-05-20 18:59:02  INFO      Benchmark: 100 × create_record(CLIENT)
+2026-05-20 18:59:02  INFO        100 × create_record(CLIENT)                          0.0007 s
+2026-05-20 18:59:02  INFO        .-- Chart: 100× CLIENT insert — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_bulk_flight_insert
+2026-05-20 18:59:02  INFO      Benchmark: 100 × create_record(FLIGHT)
+2026-05-20 18:59:02  INFO        100 × create_record(FLIGHT)                          0.0001 s
+2026-05-20 18:59:02  INFO        .-- Chart: 100× FLIGHT insert — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 2.0000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_list_records_performance
+2026-05-20 18:59:02  INFO      Benchmark: list_records() over 100 records
+2026-05-20 18:59:02  INFO        list_records() (100 records)                         0.0000 s
+2026-05-20 18:59:02  INFO        .-- Chart: list_records() — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_save_reload_roundtrip
+2026-05-20 18:59:02  INFO      Benchmark: save() + from_file() round-trip with 50 records
+2026-05-20 18:59:02  INFO        save() + from_file() (50 records)                    0.0006 s
+2026-05-20 18:59:02  INFO        .-- Chart: save + reload round-trip — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0006 / 2.0000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_search_after_bulk_insert
+2026-05-20 18:59:02  INFO      Benchmark: search_records('Perf Client 0050') over 100 records
+2026-05-20 18:59:02  INFO        search_records('Perf Client 0050')                   0.0001 s
+2026-05-20 18:59:02  INFO        .-- Chart: search_records() free-text — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 0.5000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_search_type_filtered
+2026-05-20 18:59:02  INFO      Benchmark: search_records(type=CLIENT) over 100 records
+2026-05-20 18:59:02  INFO        search_records(type=CLIENT) over 100                 0.0000 s
+2026-05-20 18:59:02  INFO        .-- Chart: search_records() type-filtered — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestComponentPerformance.test_statistics_performance
+2026-05-20 18:59:02  INFO      Benchmark: statistics() over 150 records
+2026-05-20 18:59:02  INFO        statistics() (150 records)                           0.0000 s
+2026-05-20 18:59:02  INFO        .-- Chart: statistics() — time vs threshold
+2026-05-20 18:59:02  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      CLASS SETUP  TestWebPerformance
+2026-05-20 18:59:02  INFO      Launching: python -m record_management_system.web
+2026-05-20 18:59:02  INFO      Server ready at http://127.0.0.1:5000  (PID 26310).
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestWebPerformance.test_api_get_records_json_metrics
+2026-05-20 18:59:02  INFO        [HTTP] GET /api/records  (JSON API)                  
+2026-05-20 18:59:02  INFO          Status       : 200  |  Time : 2.5 ms  |  Size : 15 B
+2026-05-20 18:59:02  INFO          Content-Type : application/json
+2026-05-20 18:59:02  INFO          Records in payload : 0
+2026-05-20 18:59:02  INFO        .-- Chart: GET /api/records — latency vs threshold
+2026-05-20 18:59:02  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        2.5 / 500.0     ms    [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestWebPerformance.test_api_put_records_latency
+2026-05-20 18:59:02  INFO        [HTTP] PUT /api/records  (write round-trip)          
+2026-05-20 18:59:02  INFO          Status       : 200  |  Time : 1.4 ms  |  Size : 15 B
+2026-05-20 18:59:02  INFO          Content-Type : application/json
+2026-05-20 18:59:02  INFO        .-- Chart: PUT /api/records — latency vs threshold
+2026-05-20 18:59:02  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        1.4 / 1000.0    ms    [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestWebPerformance.test_concurrent_get_throughput
+2026-05-20 18:59:02  INFO        [CONCURRENT] 10 × GET /api/records
+2026-05-20 18:59:02  INFO          Wall time        : 0.004 s
+2026-05-20 18:59:02  INFO          Latency (ms)     : mean=2.2  peak=3.0
+2026-05-20 18:59:02  INFO          HTTP 200 count   : 10 / 10
+2026-05-20 18:59:02  INFO        .-- Chart: 10× concurrent GET — wall time & latency vs threshold
+2026-05-20 18:59:02  INFO        | Wall time      [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        3.8 / 5000.0    ms    [PASS]
+2026-05-20 18:59:02  INFO        | Lat mean       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        2.2 / 500.0     ms    [PASS]
+2026-05-20 18:59:02  INFO        | Lat peak       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        3.0 / 500.0     ms    [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestWebPerformance.test_index_html_metrics
+2026-05-20 18:59:02  INFO        [HTTP] GET /  (HTML index page)                      
+2026-05-20 18:59:02  INFO          Status       : 200  |  Time : 0.5 ms  |  Size : 4681 B
+2026-05-20 18:59:02  INFO          Content-Type : text/html; charset=utf-8
+2026-05-20 18:59:02  INFO          HTML tags found  : body, button, div, form, h1, h2, head, header, html, input, label, link, main, meta, nav, option, p, script, section, select, table, tbody, thead, title, tr
+2026-05-20 18:59:02  INFO          <title> text     : Record Management System
+2026-05-20 18:59:02  INFO        .-- Chart: GET /  HTML page — latency vs threshold
+2026-05-20 18:59:02  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.5 / 500.0     ms    [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:02  INFO      ============================================================
+2026-05-20 18:59:02  INFO      TEST  TestWebPerformance.test_server_resource_usage_under_load
+2026-05-20 18:59:02  INFO      --- web_server_under_load ---
+2026-05-20 18:59:02  INFO        Samples : 1  (0.0 s window)
+2026-05-20 18:59:02  INFO        CPU     : mean=164.7%  peak=164.7%
+2026-05-20 18:59:02  INFO        RSS MB  : min=15.9  mean=15.9  peak=15.9
+2026-05-20 18:59:02  INFO        Threads : peak=1
+2026-05-20 18:59:02  INFO        .-- Chart: Web server under load — resource vs threshold
+2026-05-20 18:59:02  INFO        | CPU mean       [████████████████████████████████]      164.7 / 80.0      %     [FAIL]
+2026-05-20 18:59:02  INFO        | RSS peak       [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]       15.9 / 300.0     MB    [PASS]
+2026-05-20 18:59:02  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_bulk_airline_insert
+2026-05-20 18:59:29  INFO      Benchmark: 100 × create_record(AIRLINE)
+2026-05-20 18:59:29  INFO        100 × create_record(AIRLINE)                         0.0007 s
+2026-05-20 18:59:29  INFO        .-- Chart: 100× AIRLINE insert — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_bulk_client_insert
+2026-05-20 18:59:29  INFO      Benchmark: 100 × create_record(CLIENT)
+2026-05-20 18:59:29  INFO        100 × create_record(CLIENT)                          0.0008 s
+2026-05-20 18:59:29  INFO        .-- Chart: 100× CLIENT insert — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0008 / 1.0000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_bulk_flight_insert
+2026-05-20 18:59:29  INFO      Benchmark: 100 × create_record(FLIGHT)
+2026-05-20 18:59:29  INFO        100 × create_record(FLIGHT)                          0.0001 s
+2026-05-20 18:59:29  INFO        .-- Chart: 100× FLIGHT insert — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 2.0000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_list_records_performance
+2026-05-20 18:59:29  INFO      Benchmark: list_records() over 100 records
+2026-05-20 18:59:29  INFO        list_records() (100 records)                         0.0000 s
+2026-05-20 18:59:29  INFO        .-- Chart: list_records() — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_save_reload_roundtrip
+2026-05-20 18:59:29  INFO      Benchmark: save() + from_file() round-trip with 50 records
+2026-05-20 18:59:29  INFO        save() + from_file() (50 records)                    0.0006 s
+2026-05-20 18:59:29  INFO        .-- Chart: save + reload round-trip — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0006 / 2.0000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_search_after_bulk_insert
+2026-05-20 18:59:29  INFO      Benchmark: search_records('Perf Client 0050') over 100 records
+2026-05-20 18:59:29  INFO        search_records('Perf Client 0050')                   0.0001 s
+2026-05-20 18:59:29  INFO        .-- Chart: search_records() free-text — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 0.5000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_search_type_filtered
+2026-05-20 18:59:29  INFO      Benchmark: search_records(type=CLIENT) over 100 records
+2026-05-20 18:59:29  INFO        search_records(type=CLIENT) over 100                 0.0000 s
+2026-05-20 18:59:29  INFO        .-- Chart: search_records() type-filtered — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestComponentPerformance.test_statistics_performance
+2026-05-20 18:59:29  INFO      Benchmark: statistics() over 150 records
+2026-05-20 18:59:29  INFO        statistics() (150 records)                           0.0000 s
+2026-05-20 18:59:29  INFO        .-- Chart: statistics() — time vs threshold
+2026-05-20 18:59:29  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      CLASS SETUP  TestWebPerformance
+2026-05-20 18:59:29  INFO      Launching: python -m record_management_system.web
+2026-05-20 18:59:29  INFO      Server ready at http://127.0.0.1:5000  (PID 26323).
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestWebPerformance.test_api_get_records_json_metrics
+2026-05-20 18:59:29  INFO        [HTTP] GET /api/records  (JSON API)                  
+2026-05-20 18:59:29  INFO          Status       : 200  |  Time : 0.6 ms  |  Size : 15 B
+2026-05-20 18:59:29  INFO          Content-Type : application/json
+2026-05-20 18:59:29  INFO          Records in payload : 0
+2026-05-20 18:59:29  INFO        .-- Chart: GET /api/records — latency vs threshold
+2026-05-20 18:59:29  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.6 / 500.0     ms    [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestWebPerformance.test_api_put_records_latency
+2026-05-20 18:59:29  INFO        [HTTP] PUT /api/records  (write round-trip)          
+2026-05-20 18:59:29  INFO          Status       : 200  |  Time : 0.9 ms  |  Size : 15 B
+2026-05-20 18:59:29  INFO          Content-Type : application/json
+2026-05-20 18:59:29  INFO        .-- Chart: PUT /api/records — latency vs threshold
+2026-05-20 18:59:29  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.9 / 1000.0    ms    [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestWebPerformance.test_concurrent_get_throughput
+2026-05-20 18:59:29  INFO        [CONCURRENT] 10 × GET /api/records
+2026-05-20 18:59:29  INFO          Wall time        : 0.003 s
+2026-05-20 18:59:29  INFO          Latency (ms)     : mean=1.7  peak=2.2
+2026-05-20 18:59:29  INFO          HTTP 200 count   : 10 / 10
+2026-05-20 18:59:29  INFO        .-- Chart: 10× concurrent GET — wall time & latency vs threshold
+2026-05-20 18:59:29  INFO        | Wall time      [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        3.0 / 5000.0    ms    [PASS]
+2026-05-20 18:59:29  INFO        | Lat mean       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        1.7 / 500.0     ms    [PASS]
+2026-05-20 18:59:29  INFO        | Lat peak       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        2.2 / 500.0     ms    [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestWebPerformance.test_index_html_metrics
+2026-05-20 18:59:29  INFO        [HTTP] GET /  (HTML index page)                      
+2026-05-20 18:59:29  INFO          Status       : 200  |  Time : 0.4 ms  |  Size : 4681 B
+2026-05-20 18:59:29  INFO          Content-Type : text/html; charset=utf-8
+2026-05-20 18:59:29  INFO          HTML tags found  : body, button, div, form, h1, h2, head, header, html, input, label, link, main, meta, nav, option, p, script, section, select, table, tbody, thead, title, tr
+2026-05-20 18:59:29  INFO          <title> text     : Record Management System
+2026-05-20 18:59:29  INFO        .-- Chart: GET /  HTML page — latency vs threshold
+2026-05-20 18:59:29  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.4 / 500.0     ms    [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 18:59:29  INFO      ============================================================
+2026-05-20 18:59:29  INFO      TEST  TestWebPerformance.test_server_resource_usage_under_load
+2026-05-20 18:59:29  INFO      --- web_server_under_load ---
+2026-05-20 18:59:29  INFO        Samples : 1  (0.0 s window)
+2026-05-20 18:59:29  INFO        CPU     : mean=122.2%  peak=122.2%
+2026-05-20 18:59:29  INFO        RSS MB  : min=13.9  mean=13.9  peak=13.9
+2026-05-20 18:59:29  INFO        Threads : peak=1
+2026-05-20 18:59:29  INFO        .-- Chart: Web server under load — resource vs threshold
+2026-05-20 18:59:29  INFO        | CPU mean       [████████████████████████████████]      122.2 / 80.0      %     [FAIL]
+2026-05-20 18:59:29  INFO        | RSS peak       [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]       13.9 / 300.0     MB    [PASS]
+2026-05-20 18:59:29  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:40  INFO      ============================================================
+2026-05-20 19:00:40  INFO      TEST  TestProcessPerformance.test_startup_resource_usage
+2026-05-20 19:00:40  INFO      Launching: python -m record_management_system.main
+2026-05-20 19:00:45  INFO      Process terminated after 5.04 s.
+2026-05-20 19:00:45  DEBUG     Process stderr:
+2026-05-20 19:00:40 [INFO] record_management_system.storage: Loaded 0 record(s) from /Users/heather/PycharmProjects/record-management-system-project-final/data/records.json.
+2026-05-20 19:00:45  INFO      --- startup_resource_usage ---
+2026-05-20 19:00:45  INFO        Samples : 48  (4.9 s window)
+2026-05-20 19:00:45  INFO        CPU     : mean=4.6%  peak=61.2%
+2026-05-20 19:00:45  INFO        RSS MB  : min=0.7  mean=121.5  peak=126.2
+2026-05-20 19:00:45  INFO        Threads : peak=13
+2026-05-20 19:00:45  INFO        .-- Chart: Tkinter app startup — resource vs threshold
+2026-05-20 19:00:45  INFO        | CPU mean       [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        4.6 / 80.0      %     [PASS]
+2026-05-20 19:00:45  INFO        | RSS peak       [█████████████░░░░░░░░░░░░░░░░░░░]      126.2 / 300.0     MB    [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      CLASS SETUP  TestWebPerformance
+2026-05-20 19:00:45  INFO      Launching: python -m record_management_system.web
+2026-05-20 19:00:45  INFO      Server ready at http://127.0.0.1:5000  (PID 26338).
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestWebPerformance.test_api_get_records_json_metrics
+2026-05-20 19:00:45  INFO        [HTTP] GET /api/records  (JSON API)                  
+2026-05-20 19:00:45  INFO          Status       : 200  |  Time : 0.8 ms  |  Size : 15 B
+2026-05-20 19:00:45  INFO          Content-Type : application/json
+2026-05-20 19:00:45  INFO          Records in payload : 0
+2026-05-20 19:00:45  INFO        .-- Chart: GET /api/records — latency vs threshold
+2026-05-20 19:00:45  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.8 / 500.0     ms    [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestWebPerformance.test_api_put_records_latency
+2026-05-20 19:00:45  INFO        [HTTP] PUT /api/records  (write round-trip)          
+2026-05-20 19:00:45  INFO          Status       : 200  |  Time : 1.5 ms  |  Size : 15 B
+2026-05-20 19:00:45  INFO          Content-Type : application/json
+2026-05-20 19:00:45  INFO        .-- Chart: PUT /api/records — latency vs threshold
+2026-05-20 19:00:45  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        1.5 / 1000.0    ms    [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestWebPerformance.test_concurrent_get_throughput
+2026-05-20 19:00:45  INFO        [CONCURRENT] 10 × GET /api/records
+2026-05-20 19:00:45  INFO          Wall time        : 0.004 s
+2026-05-20 19:00:45  INFO          Latency (ms)     : mean=2.4  peak=3.1
+2026-05-20 19:00:45  INFO          HTTP 200 count   : 10 / 10
+2026-05-20 19:00:45  INFO        .-- Chart: 10× concurrent GET — wall time & latency vs threshold
+2026-05-20 19:00:45  INFO        | Wall time      [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        4.4 / 5000.0    ms    [PASS]
+2026-05-20 19:00:45  INFO        | Lat mean       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        2.4 / 500.0     ms    [PASS]
+2026-05-20 19:00:45  INFO        | Lat peak       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        3.1 / 500.0     ms    [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestWebPerformance.test_index_html_metrics
+2026-05-20 19:00:45  INFO        [HTTP] GET /  (HTML index page)                      
+2026-05-20 19:00:45  INFO          Status       : 200  |  Time : 0.5 ms  |  Size : 4681 B
+2026-05-20 19:00:45  INFO          Content-Type : text/html; charset=utf-8
+2026-05-20 19:00:45  INFO          HTML tags found  : body, button, div, form, h1, h2, head, header, html, input, label, link, main, meta, nav, option, p, script, section, select, table, tbody, thead, title, tr
+2026-05-20 19:00:45  INFO          <title> text     : Record Management System
+2026-05-20 19:00:45  INFO        .-- Chart: GET /  HTML page — latency vs threshold
+2026-05-20 19:00:45  INFO        | Latency        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.5 / 500.0     ms    [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestWebPerformance.test_server_resource_usage_under_load
+2026-05-20 19:00:45  INFO      --- web_server_under_load ---
+2026-05-20 19:00:45  INFO        Samples : 1  (0.0 s window)
+2026-05-20 19:00:45  INFO        CPU     : mean=0.0%  peak=0.0%
+2026-05-20 19:00:45  INFO        RSS MB  : min=13.7  mean=13.7  peak=13.7
+2026-05-20 19:00:45  INFO        Threads : peak=1
+2026-05-20 19:00:45  INFO        .-- Chart: Web server under load — resource vs threshold
+2026-05-20 19:00:45  INFO        | CPU mean       [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]        0.0 / 80.0      %     [PASS]
+2026-05-20 19:00:45  INFO        | RSS peak       [█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]       13.7 / 300.0     MB    [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_bulk_airline_insert
+2026-05-20 19:00:45  INFO      Benchmark: 100 × create_record(AIRLINE)
+2026-05-20 19:00:45  INFO        100 × create_record(AIRLINE)                         0.0007 s
+2026-05-20 19:00:45  INFO        .-- Chart: 100× AIRLINE insert — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0007 / 1.0000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_bulk_client_insert
+2026-05-20 19:00:45  INFO      Benchmark: 100 × create_record(CLIENT)
+2026-05-20 19:00:45  INFO        100 × create_record(CLIENT)                          0.0008 s
+2026-05-20 19:00:45  INFO        .-- Chart: 100× CLIENT insert — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0008 / 1.0000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_bulk_flight_insert
+2026-05-20 19:00:45  INFO      Benchmark: 100 × create_record(FLIGHT)
+2026-05-20 19:00:45  INFO        100 × create_record(FLIGHT)                          0.0002 s
+2026-05-20 19:00:45  INFO        .-- Chart: 100× FLIGHT insert — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0002 / 2.0000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_list_records_performance
+2026-05-20 19:00:45  INFO      Benchmark: list_records() over 100 records
+2026-05-20 19:00:45  INFO        list_records() (100 records)                         0.0000 s
+2026-05-20 19:00:45  INFO        .-- Chart: list_records() — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_save_reload_roundtrip
+2026-05-20 19:00:45  INFO      Benchmark: save() + from_file() round-trip with 50 records
+2026-05-20 19:00:45  INFO        save() + from_file() (50 records)                    0.0008 s
+2026-05-20 19:00:45  INFO        .-- Chart: save + reload round-trip — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0008 / 2.0000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_search_after_bulk_insert
+2026-05-20 19:00:45  INFO      Benchmark: search_records('Perf Client 0050') over 100 records
+2026-05-20 19:00:45  INFO        search_records('Perf Client 0050')                   0.0001 s
+2026-05-20 19:00:45  INFO        .-- Chart: search_records() free-text — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0001 / 0.5000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_search_type_filtered
+2026-05-20 19:00:45  INFO      Benchmark: search_records(type=CLIENT) over 100 records
+2026-05-20 19:00:45  INFO        search_records(type=CLIENT) over 100                 0.0000 s
+2026-05-20 19:00:45  INFO        .-- Chart: search_records() type-filtered — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
+2026-05-20 19:00:45  INFO      ============================================================
+2026-05-20 19:00:45  INFO      TEST  TestComponentPerformance.test_statistics_performance
+2026-05-20 19:00:45  INFO      Benchmark: statistics() over 150 records
+2026-05-20 19:00:45  INFO        statistics() (150 records)                           0.0000 s
+2026-05-20 19:00:45  INFO        .-- Chart: statistics() — time vs threshold
+2026-05-20 19:00:45  INFO        | Elapsed        [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0.0000 / 0.5000    s     [PASS]
+2026-05-20 19:00:45  INFO        '-------------------------------------------------------------------
