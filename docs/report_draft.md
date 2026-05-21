@@ -182,6 +182,11 @@ to a user-chosen CSV file - and "Exit".  These are extras beyond the
 strict project brief but they make the application noticeably more
 useful for a working travel agent without changing the data model.
 
+From an accessibility perspective, the design uses clear labels, grouped
+controls and a predictable layout. These choices support the WCAG principles 
+that interfaces should be perceivable, operable, understandable and robust. 
+The colors chosen are also clor-blind friendly.
+
 An additional browser-based front end was added in `web_frontend/`
 using HTML, CSS and JavaScript. It follows the supplied UI/UX preview
 design, with top tabs for Clients, Airlines and Flights, clean panels,
